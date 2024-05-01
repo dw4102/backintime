@@ -158,13 +158,21 @@ and installed separately accordingly.
 You can use optional arguments to `./configure` for creating a Makefile.
 See `common/configure --help` and `qt/configure --help` for details.
 
-## Build own `deb` file
+## (Debian) Build own `deb` file
 
-1. Run `./makedeb.sh` in the repositories root directory.
-2. Two `deb` files are built and places in the repositories parent directory.
+1. Run `./makedeb.sh` in the repository's root directory.
+2. Two `deb` files are built and places in the repository's parent directory.
 3. Install the packages
   - `sudo dpkg -i ../backintime-common-<version>.deb`
   - `sudo dpkg -i ../backintime-qt-<version>.deb`
+
+## (Fedora/RHEL) Build own `rpm` file
+
+1. Ensure that the `rpmdevtools` package is installed
+  - `sudo dnf install rpmdevtools`
+2. Run `./makerpm.sh` in the repository's root directory
+3. Install the packages
+  - `sudo dnf install -y ~/rpmbuild/RPMS/noarch/backintime-<version>.rpm`
 
 # Testing
 > [!IMPORTANT]

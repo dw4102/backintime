@@ -1,0 +1,58 @@
+Name: backintime
+Version: 1.4.4
+Release: 1%{?dist}
+Summary: An easy-to-use tool to backup files and folders written in Python3.
+BuildArch: noarch
+
+License: GPL-2.0
+Source0: backintime-1.4.4-dev.all.tar.gz
+
+Requires: bash
+BuildRequires: make
+
+%description
+RPM build of backintime
+
+%prep
+%setup -q
+
+%build
+cd common/ && ./configure && make
+
+%install
+mkdir -p %{buildroot}/usr/bin/
+install -m 0755 common/%{name} %{buildroot}%{_bindir}/%name
+
+# all scripts
+mkdir -p %{buildroot}/usr/share/%{name}/common/
+install -m 0755 common/*.py %{buildroot}/usr/share/%{name}/common/
+
+%files
+%{_bindir}/%{name}
+/usr/share/%{name}/common/%{name}.py
+/usr/share/%{name}/common/applicationinstance.py
+/usr/share/%{name}/common/askpass.py
+/usr/share/%{name}/common/bcolors.py
+/usr/share/%{name}/common/cli.py
+/usr/share/%{name}/common/config.py
+/usr/share/%{name}/common/configfile.py
+/usr/share/%{name}/common/diagnostics.py
+/usr/share/%{name}/common/encfstools.py
+/usr/share/%{name}/common/exceptions.py
+/usr/share/%{name}/common/guiapplicationinstance.py
+/usr/share/%{name}/common/languages.py
+/usr/share/%{name}/common/logger.py
+/usr/share/%{name}/common/mount.py
+/usr/share/%{name}/common/password.py
+/usr/share/%{name}/common/password_ipc.py
+/usr/share/%{name}/common/pluginmanager.py
+/usr/share/%{name}/common/progress.py
+/usr/share/%{name}/common/qt_probing.py
+/usr/share/%{name}/common/snapshotlog.py
+/usr/share/%{name}/common/snapshots.py
+/usr/share/%{name}/common/sshMaxArg.py
+/usr/share/%{name}/common/sshtools.py
+/usr/share/%{name}/common/tools.py
+/usr/share/%{name}/common/version.py
+
+%changelog
